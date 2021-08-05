@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: artifacts:BarcodeScannerLibrary:unspecified">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/BarcodeScannerLibrary/build/.transforms/f4c198dfafba5768e7297e6fa7ec5fe4/jetified-barcode_scanner_library_v2.6.0.0-release/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/BarcodeScannerLibrary/build/.transforms/f4c198dfafba5768e7297e6fa7ec5fe4/jetified-barcode_scanner_library_v2.6.0.0-release/res" />
+      <root url="file://$PROJECT_DIR$/BarcodeScannerLibrary/build/.transforms/f4c198dfafba5768e7297e6fa7ec5fe4/jetified-barcode_scanner_library_v2.6.0.0-release/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
