@@ -23,10 +23,6 @@ public class Application extends android.app.Application {
     //Var to access scanner app engine
     public static ScannerAppEngine scannerAppEngine;
 
-    // Key names received from the BluetoothChatService Handler
-    public static final String DEVICE_NAME = "device_name";
-    public static final String TOAST = "toast";
-
     //Settings for notifications
     public static int MOT_SETTING_OPMODE ;
     public static boolean MOT_SETTING_SCANNER_DETECTION;
@@ -43,8 +39,6 @@ public class Application extends android.app.Application {
     public static boolean MOT_SETTING_NOTIFICATION_IMAGE;
     public static boolean MOT_SETTING_NOTIFICATION_VIDEO;
     public static boolean MOT_SETTING_NOTIFICATION_BINARY_DATA;
-
-    public static volatile int INTENT_ID = 0xFFFF;
 
     public static int SCANNER_ID_NONE=  -1;
     public static String currentScannerName ="";

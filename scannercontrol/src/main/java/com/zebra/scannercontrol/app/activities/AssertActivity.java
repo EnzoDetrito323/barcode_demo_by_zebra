@@ -46,7 +46,6 @@ import static com.zebra.scannercontrol.RMDAttributes.RMD_ATTR_DOM;
 public class AssertActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,ScannerAppEngine.IScannerAppEngineDevConnectionsDelegate {
     private NavigationView navigationView;
     Menu menu;
-    MenuItem pairNewScannerMenu;
     int scannerID;
 
     @Override
@@ -87,8 +86,7 @@ public class AssertActivity extends BaseActivity implements NavigationView.OnNav
         navigationView.setNavigationItemSelectedListener(this);
         scannerID = getIntent().getIntExtra(Constants.SCANNER_ID, -1);
         menu = navigationView.getMenu();
-        pairNewScannerMenu = menu.findItem(R.id.nav_pair_device);
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_disconnect);
+
 
         fetchAssertInfo();
     }
@@ -135,15 +133,8 @@ public class AssertActivity extends BaseActivity implements NavigationView.OnNav
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Intent intent;
-        if (id == R.id.nav_pair_device) {
-            disconnect(scannerID);
-            Application.barcodeData.clear();
-            Application.currentScannerId = Application.SCANNER_ID_NONE;
-            finish();
-            intent = new Intent(AssertActivity.this, HomeActivity.class);
-            startActivity(intent);
 
-        } else if (id == R.id.nav_devices) {
+        if (id == R.id.nav_devices) {
             intent = new Intent(this, ScannersActivity.class);
 
             startActivity(intent);
@@ -169,15 +160,6 @@ public class AssertActivity extends BaseActivity implements NavigationView.OnNav
                 }
             });
             dlg.show();
-        }else if (id == R.id.nav_connection_help) {
-            intent = new Intent(this, ConnectionHelpActivity2.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_settings) {
-            intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_about) {
-            intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -198,14 +180,12 @@ public class AssertActivity extends BaseActivity implements NavigationView.OnNav
 
     @Override
     public boolean scannerHasConnected(int scannerID) {
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_disconnect);
         return false;
     }
 
     @Override
     public boolean scannerHasDisconnected(int scannerID) {
         Application.barcodeData.clear();
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_pair);
         this.finish();
         return true;
     }

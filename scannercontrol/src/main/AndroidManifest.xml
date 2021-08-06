@@ -26,16 +26,7 @@
             android:enabled="true"
             android:exported="true"></service>
 
-        <activity
-            android:name=".activities.VirtualTetherSettings"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_active_scanner"
-            android:parentActivityName=".activities.ActiveScannerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
-        </activity> <!-- Allows Android v10 to use legacy storage -->
+        <!-- Allows Android v10 to use legacy storage -->
         <activity
             android:name=".activities.HomeActivity"
             android:configChanges="orientation|screenSize"
@@ -61,11 +52,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.AboutActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_about"
-            android:parentActivityName=".activities.HomeActivity" />
-        <activity
             android:name=".activities.ScannersActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_scanners"
@@ -79,11 +65,6 @@
                 android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
                 android:resource="@xml/device_filter" />
         </activity>
-        <activity
-            android:name=".activities.ConnectionHelpActivity2"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_scanner_configurations"
-            android:parentActivityName=".activities.HomeActivity" />
         <activity
             android:name=".activities.SettingsActivity"
             android:configChanges="orientation|screenSize"
@@ -157,16 +138,6 @@
                 android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
         </activity>
         <activity
-            android:name=".activities.LEDActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_active_scanner"
-            android:parentActivityName=".activities.ActiveScannerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
-        </activity>
-        <activity
             android:name=".activities.SymbologiesActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_active_scanner"
@@ -205,63 +176,6 @@
                 android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
         </activity>
         <activity
-            android:name=".activities.BatteryStatistics"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_active_scanner"
-            android:parentActivityName=".activities.ActiveScannerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
-        </activity>
-        <activity
-            android:name=".activities.UpdateFirmware"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
-            android:label="@string/title_activity_active_scanner"
-            android:parentActivityName=".activities.ActiveScannerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
-        </activity>
-        <activity
-            android:name=".activities.UnPairAndRebootActivity"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
-            android:label="@string/title_activity_active_scanner"
-            android:parentActivityName=".activities.ActiveScannerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
-        </activity>
-        <activity
-            android:name=".activities.SupportedScanners"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_supported_scanners"
-            android:parentActivityName=".activities.ConnectionHelpActivity2">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.ConnectionHelpActivity2" />
-        </activity>
-        <activity
-            android:name=".activities.PairingInstructionsAll"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_pairing_instructions_all"
-            android:parentActivityName=".activities.ConnectionHelpActivity2">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.ConnectionHelpActivity2" />
-        </activity>
-        <activity
-            android:name=".activities.PairingInstructionsRFD8500"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_pairing_instructions_rfd8500"
-            android:parentActivityName=".activities.ConnectionHelpActivity2">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.ConnectionHelpActivity2" />
-        </activity>
-        <activity
             android:name=".activities.FindCabledScanner"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_find_cabled_scanner"
@@ -291,50 +205,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
         </activity>
-        <activity
-            android:name=".activities.ScanSpeedAnalyticsActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_active_scanner"
-            android:parentActivityName=".activities.ActiveScannerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
-        </activity>
-        <activity
-            android:name=".activities.ImageActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_active_scanner"
-            android:parentActivityName=".activities.ActiveScannerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
-        </activity>
-        <activity
-            android:name=".activities.IntelligentImageCaptureActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_active_scanner"
-            android:parentActivityName=".activities.ActiveScannerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
-        </activity>
-        <activity
-            android:name=".activities.ScaleActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_active_scanner"
-            android:parentActivityName=".activities.ActiveScannerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zebra.scannercontrol.app.activities.ActiveScannerActivity" />
-        </activity>
-        <activity
-            android:name=".activities.DecodeImageActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

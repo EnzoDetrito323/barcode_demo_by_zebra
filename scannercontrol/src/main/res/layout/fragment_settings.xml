@@ -54,37 +54,6 @@
 
             <include layout="@layout/normal_divider" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:onClick="loadLedActions">
-
-                <TextView
-                    style="@style/roboto_medium_16dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_weight="0"
-                    android:text="@string/led_control"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:color/white"
-                    android:orientation="vertical"></LinearLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center|right"
-                    android:layout_marginRight="18dp"
-                    android:layout_weight="0"
-                    android:src="@drawable/right" />
-            </TableRow>
-
-            <include layout="@layout/normal_divider" />
-
             <!--Symbologies -->
 
             <TableRow
@@ -117,47 +86,6 @@
             </TableRow>
 
             <include layout="@layout/normal_divider" />
-
-            <!--Scanning Control -->
-
-            <!--<TableRow-->
-                <!--android:id="@+id/tbl_row_scanning"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@android:color/white">-->
-
-                <!--<LinearLayout-->
-                    <!--android:id="@+id/layout_scanning"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="60dp"-->
-                    <!--android:layout_marginLeft="18dp"-->
-                    <!--android:layout_weight="85"-->
-                    <!--android:background="@android:color/white"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:orientation="vertical">-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/txt_scanning_control"-->
-                        <!--style="@style/roboto_medium_16dp"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="@string/scanning"/>-->
-
-                    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-                        <!--&lt;!&ndash;style="@style/roboto_regular_14dp"&ndash;&gt;-->
-                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-                        <!--&lt;!&ndash;android:text="@string/enable_disable"/>&ndash;&gt;-->
-                <!--</LinearLayout>-->
-
-                <!--<android.support.v7.widget.SwitchCompat-->
-                    <!--android:id="@+id/switch_scanning"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_weight="25"-->
-                    <!--android:paddingEnd="18dp" />-->
-            <!--</TableRow>-->
-
-            <!--<include layout="@layout/normal_divider" />-->
 
             <TableRow
                 android:layout_width="match_parent"
@@ -304,93 +232,6 @@
 
             <include layout="@layout/normal_divider" />
 
-            <TableRow
-                android:id="@+id/vibration_feedback_tbl_row"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:onClick="vibrationFeedback">
-
-                <TextView
-                    android:id="@+id/vibration_feedback_text"
-                    style="@style/roboto_medium_16dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_weight="0"
-                    android:text="@string/vibration_feedback"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:color/white"
-                    android:orientation="vertical"></LinearLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center|right"
-                    android:layout_marginRight="18dp"
-                    android:layout_weight="0"
-                    android:src="@drawable/right" />
-            </TableRow>
-
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="18dp"
-                android:layout_weight="85"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <Button
-                    style="@style/style_bold_font"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="12"
-                    android:background="@android:color/white"
-                    android:onClick="updateFirmware"
-                    android:paddingStart="20dp"
-                    android:text="@string/updateFirmware"
-                    android:textAlignment="textStart" />
-
-                <TextView
-                    android:id="@+id/firmwareUpdateStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7.19" />
-
-                <include layout="@layout/normal_divider" />
-
-                <Button
-                    style="@style/style_bold_font"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="12"
-                    android:background="@android:color/white"
-                    android:onClick="startFirmware"
-                    android:paddingStart="20dp"
-                    android:text="@string/start_new_firmware"
-                    android:textAlignment="textStart" />
-
-                <include layout="@layout/normal_divider" />
-
-                <Button
-                    style="@style/style_bold_font"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="12"
-                    android:background="@android:color/white"
-                    android:onClick="abortFirmware"
-                    android:paddingStart="20dp"
-                    android:text="@string/abort_update_firmware"
-                    android:textAlignment="textStart" />
-            </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -398,9 +239,6 @@
 
 
             <include layout="@layout/normal_divider" />
-
-
-
 
         </LinearLayout>
     </ScrollView>

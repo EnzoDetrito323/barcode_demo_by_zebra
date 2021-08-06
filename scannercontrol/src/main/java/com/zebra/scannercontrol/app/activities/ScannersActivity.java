@@ -278,12 +278,7 @@ public class ScannersActivity extends BaseActivity implements NavigationView.OnN
         addDevListDelegate(this);
     }
 
-    public void OnConnHelp(View v) {
 
-        Intent intent = new Intent(this, ConnectionHelpActivity2.class);
-        startActivity(intent);
-
-    }
 
     private void UpdateScannerListView(int what) {
 

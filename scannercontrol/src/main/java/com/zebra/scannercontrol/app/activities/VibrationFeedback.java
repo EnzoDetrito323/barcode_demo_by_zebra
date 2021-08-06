@@ -49,7 +49,6 @@ public class VibrationFeedback extends BaseActivity implements NavigationView.On
     private ArrayList<Integer> vibrationDurations;
     private NavigationView navigationView;
     Menu menu;
-    MenuItem pairNewScannerMenu;
     private int scannerID;
     static MyAsyncTask cmdExecTask=null;
 
@@ -90,8 +89,7 @@ public class VibrationFeedback extends BaseActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         menu = navigationView.getMenu();
-        pairNewScannerMenu = menu.findItem(R.id.nav_pair_device);
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_disconnect);
+
         scannerID = getIntent().getIntExtra(Constants.SCANNER_ID, -1);
         vibrationDurations = new ArrayList<>();
         vibrationDurations.add(RMD_ATTR_VALUE_VIBRATION_150);
@@ -129,24 +127,6 @@ public class VibrationFeedback extends BaseActivity implements NavigationView.On
         fetchVibrationStatus();
     }
 
-    private boolean isPagerMotorAvailable() {
-        boolean isFound = false;
-        String in_xml = "<inArgs><scannerID>" + scannerID + "</scannerID><cmdArgs><arg-xml><attrib_list>613</attrib_list></arg-xml></cmdArgs></inArgs>";
-        StringBuilder outXML = new StringBuilder();
-        cmdExecTask = new MyAsyncTask(scannerID,DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_RSM_ATTR_GET,outXML);
-        cmdExecTask.execute(new String[]{in_xml});
-        try {
-            cmdExecTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        if(outXML.toString().contains("<id>613</id>")){
-            isFound = true;
-        }
-        return isFound;
-    }
 
     private void fetchVibrationStatus() {
         switchCompat = (SwitchCompat) findViewById(R.id.switch_vibration);
@@ -206,17 +186,6 @@ public class VibrationFeedback extends BaseActivity implements NavigationView.On
             if(txtVibration!=null)txtVibration.setTextColor(ContextCompat.getColor(this, R.color.inactive_text));
 
         }
-    }
-
-    private int getVibrationDurationIndex(int vibrationDuration) {
-        int ret = 0;
-        for (int i=0;i<vibrationDurations.size();i++){
-            if(vibrationDurations.get(i).equals(vibrationDuration)){
-                ret = i;
-                break;
-            }
-        }
-        return ret;
     }
 
     public boolean getVibrationStatus(){
@@ -307,15 +276,7 @@ public class VibrationFeedback extends BaseActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Intent intent;
-        if (id == R.id.nav_pair_device) {
-            disconnect(scannerID);
-            Application.barcodeData.clear();
-            Application.currentScannerId = Application.SCANNER_ID_NONE;
-            finish();
-            intent = new Intent(VibrationFeedback.this, HomeActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_devices) {
+        if (id == R.id.nav_devices) {
             intent = new Intent(this, ScannersActivity.class);
 
             startActivity(intent);
@@ -341,15 +302,6 @@ public class VibrationFeedback extends BaseActivity implements NavigationView.On
                 }
             });
             dlg.show();
-        }else if (id == R.id.nav_connection_help) {
-            intent = new Intent(this, ConnectionHelpActivity2.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_settings) {
-            intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_about) {
-            intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -370,14 +322,12 @@ public class VibrationFeedback extends BaseActivity implements NavigationView.On
 
     @Override
     public boolean scannerHasConnected(int scannerID) {
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_disconnect);
         return false;
     }
 
     @Override
     public boolean scannerHasDisconnected(int scannerID) {
         Application.barcodeData.clear();
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_pair);
         this.finish();
         return true;
     }

@@ -55,7 +55,6 @@ public class SsaSetSymbologyActivity extends BaseActivity implements AdapterView
     // UI element variables
     private NavigationView navigationView;
     Menu menu;
-    MenuItem pairNewScannerMenu;
 
     Spinner spinnerSymbologyType = null;
     Button btnEnable = null;
@@ -98,8 +97,7 @@ public class SsaSetSymbologyActivity extends BaseActivity implements AdapterView
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         menu = navigationView.getMenu();
-        pairNewScannerMenu = menu.findItem(R.id.nav_pair_device);
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_disconnect);
+
 
         // get scanner ID and Scan speed analytics supported symbology ID list from intent
         scannerID = getIntent().getIntExtra(Constants.SCANNER_ID, -1);
@@ -170,7 +168,6 @@ public class SsaSetSymbologyActivity extends BaseActivity implements AdapterView
             resetStatistics();
             setSymbologyConfiguration();
             setThresholddValue();
-            displaySSAView();
         }
     }
 
@@ -298,15 +295,7 @@ public class SsaSetSymbologyActivity extends BaseActivity implements AdapterView
     /**
      * Navigate to Scan Speed Analytic(details) view
      */
-    public void displaySSAView()
-    {
-        Intent intent = new Intent(this, ScanSpeedAnalyticsActivity.class);
-        intent.putExtra(Constants.SCANNER_ID, scannerID);
-        intent.putExtra(Constants.SYMBOLOGY_SSA_ENABLED, SSA_ENABLED_SYMBOLOGY_OBJECT);
-        intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getApplicationContext().startActivity(intent);
-    }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -335,15 +324,7 @@ public class SsaSetSymbologyActivity extends BaseActivity implements AdapterView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Intent intent;
-        if (id == R.id.nav_pair_device) {
-            disconnect(scannerID);
-            Application.barcodeData.clear();
-            Application.currentScannerId = Application.SCANNER_ID_NONE;
-            finish();
-            intent = new Intent(SsaSetSymbologyActivity.this, HomeActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_devices) {
+         if (id == R.id.nav_devices) {
             intent = new Intent(this, ScannersActivity.class);
 
             startActivity(intent);
@@ -369,15 +350,6 @@ public class SsaSetSymbologyActivity extends BaseActivity implements AdapterView
                 }
             });
             dlg.show();
-        }else if (id == R.id.nav_connection_help) {
-            intent = new Intent(this, ConnectionHelpActivity2.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_settings) {
-            intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_about) {
-            intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -399,13 +371,11 @@ public class SsaSetSymbologyActivity extends BaseActivity implements AdapterView
     }
     @Override
     public boolean scannerHasConnected(int scannerID) {
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_disconnect);
         return false;
     }
     @Override
     public boolean scannerHasDisconnected(int scannerID) {
         Application.barcodeData.clear();
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_pair);
         this.finish();
         Application.currentScannerId =Application.SCANNER_ID_NONE;
         Intent intent = new Intent(SsaSetSymbologyActivity.this,HomeActivity.class);

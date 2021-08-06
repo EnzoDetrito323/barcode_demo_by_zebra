@@ -120,7 +120,6 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
     static int picklistMode;
     public static final String VIRTUAL_TETHER_FEATURE = "Virtual Tether";
 
-
     public boolean isPagerMotorAvailable() {
         return pagerMotorAvailable;
     }
@@ -131,10 +130,8 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
     TextView barcodeCount;
     int iBarcodeCount;
     int BARCODE_TAB = 1;
-    int ADVANCED_TAB = 2;
     static MyAsyncTask cmdExecTask = null;
     Button btnFindScanner = null;
-    static final int ENABLE_FIND_NEW_SCANNER = 1;
 
     List<Integer> ssaSupportedAttribs;
 
@@ -247,17 +244,6 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
         navigationView.getMenu().findItem(R.id.nav_find_cabled_scanner).setChecked(false);
         navigationView.getMenu().findItem(R.id.nav_find_cabled_scanner).setCheckable(false);
 
-
-        if (waitingForFWReboot) {
-            viewPager.setCurrentItem(ADVANCED_TAB);
-            Intent intent = new Intent(this, UpdateFirmware.class);
-            intent.putExtra(Constants.SCANNER_ID, scannerID);
-            intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
-            intent.putExtra(Constants.FW_REBOOT, true);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            setWaitingForFWReboot(false);
-        }
     }
 
 
@@ -324,12 +310,6 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
         cmdExecTask.execute(new String[]{in_xml});
     }
 
-    public void loadLedActions(View view) {
-        Intent intent = new Intent(this, LEDActivity.class);
-        intent.putExtra(Constants.SCANNER_ID, scannerID);
-        intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
-        startActivity(intent);
-    }
 
     public void loadBeeperActions(View view) {
         Intent intent = new Intent(this, BeeperActionsActivity.class);
@@ -339,12 +319,7 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
         startActivity(intent);
     }
 
-    public void loadVirtualTetherConfiguration(View view) {
-        Intent intent = new Intent(this, VirtualTetherSettings.class);
-        intent.putExtra(Constants.SCANNER_ID, scannerID);
-        intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
-        startActivity(intent);
-    }
+
 
     public void loadAssert(View view) {
         Intent intent = new Intent(this, AssertActivity.class);
@@ -360,17 +335,6 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
         startActivity(intent);
     }
 
-    public void enableScanning(View view) {
-        String in_xml = "<inArgs><scannerID>" + scannerID + "</scannerID></inArgs>";
-        cmdExecTask = new MyAsyncTask(scannerID, DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_DEVICE_SCAN_ENABLE, null);
-        cmdExecTask.execute(new String[]{in_xml});
-    }
-
-    public void disableScanning(View view) {
-        String in_xml = "<inArgs><scannerID>" + scannerID + "</scannerID></inArgs>";
-        cmdExecTask = new MyAsyncTask(scannerID, DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_DEVICE_SCAN_DISABLE, null);
-        cmdExecTask.execute(new String[]{in_xml});
-    }
 
 
     public void aimOn(View view) {
@@ -392,9 +356,6 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
         intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
         startActivity(intent);
 
-//        String in_xml = "<inArgs><scannerID>" + scannerID + "</scannerID></inArgs>";
-//        cmdExecTask = new ExecuteRSMAsync(scannerID,DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_DEVICE_VIBRATION_FEEDBACK,null);
-//        cmdExecTask.execute(new String[]{in_xml});
     }
 
     public void pullTrigger(View view) {
@@ -446,46 +407,8 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
     }
 
     public int getPickListMode() {
-//        String in_xml = "<inArgs><scannerID>" + scannerID + "</scannerID><cmdArgs><arg-xml><attrib_list>402</attrib_list></arg-xml></cmdArgs></inArgs>";
-//        StringBuilder outXML = new StringBuilder();
-//        cmdExecTask = new ExecuteRSMAsync(scannerID,DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_RSM_ATTR_GET,outXML);
-//        cmdExecTask.execute(new String[]{in_xml});
         int attr_val = 0;
-//        try {
-//            cmdExecTask.get();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
-//        if(outXML !=null) {
-//            try {
-//                XmlPullParser parser = Xml.newPullParser();
-//
-//                parser.setInput(new StringReader(outXML.toString()));
-//                int event = parser.getEventType();
-//                String text = null;
-//                while (event != XmlPullParser.END_DOCUMENT) {
-//                    String name = parser.getName();
-//                    switch (event) {
-//                        case XmlPullParser.START_TAG:
-//                            break;
-//                        case XmlPullParser.TEXT:
-//                            text = parser.getText();
-//                            break;
-//
-//                        case XmlPullParser.END_TAG:
-//                           if (name.equals("value")) {
-//                                attr_val = Integer.parseInt(text.trim());
-//                           }
-//                            break;
-//                    }
-//                    event = parser.next();
-//                }
-//            } catch (Exception e) {
-//                Log.e(TAG, e.toString());
-//            }
-//        }
+
         return picklistMode;
     }
 
@@ -546,22 +469,6 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
         }
     }
 
-    /**
-     * Navigate to Scale view
-     *
-     * @param view
-     */
-    public void loadScale(View view) {
-
-        String in_xml = "<inArgs><scannerID>" + scannerID + "</scannerID></inArgs>";
-        new AsyncTaskScaleAvailable(scannerID, DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_READ_WEIGHT, this, ScaleActivity.class).execute(new String[]{in_xml});
-
-    }
-
-
-    /**
-     * scale availability check
-     */
     private class AsyncTaskScaleAvailable extends AsyncTask<String, Integer, Boolean> {
         int scannerId;
         Context context;
@@ -698,175 +605,10 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
         cmdExecTask.execute(new String[]{in_xml});
     }
 
-    public void loadUpdateFirmware(View view) {
-        Intent intent = new Intent(this, UpdateFirmware.class);
-        intent.putExtra(Constants.SCANNER_ID, scannerID);
-        intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
-        intent.putExtra(Constants.SCANNER_TYPE, scannerType);
-        startActivity(intent);
-    }
-
-    public void ImageVideo(View view) {
-        if (scannerType != 2) {
-            String message = "Video feature not supported in bluetooth scanners.";
-            alertShow(message, false);
-        } else {
-            loadImageVideo();
-        }
-    }
-
-    /**
-     * Perform check on unpair and reboot feature availability once the button is clicked
-     *
-     * @param view Button view
-     */
-    public void UnPairAndReboot(View view) {
-        String in_xml = "<inArgs><scannerID>" + scannerID + "</scannerID></inArgs>";
-        new AsyncTaskUnPairAndRebootAvailable(scannerID, DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_RSM_ATTR_GETALL, this, UnPairAndRebootActivity.class).execute(new String[]{in_xml});
-    }
-
-    private void alertShow(String message, boolean error) {
-
-        if (error) {
-        } else {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(ActiveScannerActivity.this);
-            dialog.setTitle("Video not supported")
-                    .setMessage(message)
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialoginterface, int i) {
-                            loadImageVideo();
-                        }
-                    }).show();
-        }
-    }
-
-    private void loadImageVideo() {
-        Intent intent = new Intent(this, ImageActivity.class);
-        intent.putExtra(Constants.SCANNER_ID, scannerID);
-        intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
-        intent.putExtra(Constants.SCANNER_TYPE, scannerType);
-        startActivity(intent);
-    }
-
-    public void loadIdc(View view) {
-        Intent intent = new Intent(this, IntelligentImageCaptureActivity.class);
-        intent.putExtra(Constants.SCANNER_ID, scannerID);
-        intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
-        startActivity(intent);
-    }
-
-    public void loadBatteryStatistics(View view) {
-        String in_xml = "<inArgs><scannerID>" + scannerID + "</scannerID></inArgs>";
-        new AsyncTaskBatteryAvailable(scannerID, DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_RSM_ATTR_GETALL, this, BatteryStatistics.class).execute(new String[]{in_xml});
-
-    }
-
-    /**
-     * Navigate to Scan Speed Analytics views
-     *
-     * @param view
-     */
     public void loadScanSpeedAnalytics(View view) {
-        // Scan speed analytics symbology type has set
-        if (SsaSetSymbologyActivity.SSA_SYMBOLOGY_ENABLED_FLAG) {
-            // navigate to scan speed analytics view
-            Intent intent = new Intent(this, ScanSpeedAnalyticsActivity.class);
-            intent.putExtra(Constants.SCANNER_ID, scannerID);
-            intent.putExtra(Constants.SYMBOLOGY_SSA_ENABLED, SsaSetSymbologyActivity.SSA_ENABLED_SYMBOLOGY_OBJECT);
-            intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            int ssaStatus = 0;
-            if (scannerType != 1) {
-                ssaStatus = 2;
-            }
-            intent.putExtra(Constants.SSA_STATUS, ssaStatus);
-
-            getApplicationContext().startActivity(intent);
-
-        } else { // Scan speed analytics symbology type has not set
-            // navigate to Scan speed analytics set view
             String in_xml = "<inArgs><scannerID>" + scannerID + "</scannerID></inArgs>";
             new AsyncTaskSSASvailable(scannerID, DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_RSM_ATTR_GETALL, this, SsaSetSymbologyActivity.class).execute(new String[]{in_xml});
-        }
-    }
-
-    private class AsyncTaskBatteryAvailable extends AsyncTask<String, Integer, Boolean> {
-        int scannerId;
-        Context context;
-        Class targetClass;
-        private CustomProgressDialog progressDialog;
-        DCSSDKDefs.DCSSDK_COMMAND_OPCODE opcode;
-
-        public AsyncTaskBatteryAvailable(int scannerId, DCSSDKDefs.DCSSDK_COMMAND_OPCODE opcode, Context context, Class targetClass) {
-            this.scannerId = scannerId;
-            this.opcode = opcode;
-            this.context = context;
-            this.targetClass = targetClass;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = new CustomProgressDialog(ActiveScannerActivity.this, "Please wait...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-        }
-
-        @Override
-        protected Boolean doInBackground(String... strings) {
-            StringBuilder sb = new StringBuilder();
-            boolean result = executeCommand(opcode, strings[0], sb, scannerId);
-            if (opcode == DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_RSM_ATTR_GETALL) {
-                if (result) {
-                    try {
-                        int i = 0;
-                        XmlPullParser parser = Xml.newPullParser();
-
-                        parser.setInput(new StringReader(sb.toString()));
-                        int event = parser.getEventType();
-                        String text = null;
-                        while (event != XmlPullParser.END_DOCUMENT) {
-                            String name = parser.getName();
-                            switch (event) {
-                                case XmlPullParser.START_TAG:
-                                    break;
-                                case XmlPullParser.TEXT:
-                                    text = parser.getText();
-                                    break;
-
-                                case XmlPullParser.END_TAG:
-                                    if (name.equals("attribute")) {
-                                        if (text != null && text.trim().equals("30018")) {
-                                            return true;
-                                        }
-                                    }
-                                    break;
-                            }
-                            event = parser.next();
-                        }
-                    } catch (Exception e) {
-                        Log.e(TAG, e.toString());
-                    }
-                }
-            }
-            return false;
-        }
-
-
-        @Override
-        protected void onPostExecute(Boolean b) {
-            super.onPostExecute(b);
-            if (progressDialog != null && progressDialog.isShowing())
-                progressDialog.dismiss();
-
-            Intent intent = new Intent(context, targetClass);
-            intent.putExtra(Constants.SCANNER_ID, scannerID);
-            intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
-            intent.putExtra(Constants.BATTERY_STATUS, b);
-            startActivity(intent);
-        }
-
 
     }
 
@@ -1035,86 +777,6 @@ public class ActiveScannerActivity extends BaseActivity implements NavigationVie
         }
     }
 
-    /**
-     * Check whether the unpair and reboot feature is supported by the scanner
-     */
-    private class AsyncTaskUnPairAndRebootAvailable extends AsyncTask<String, Integer, Boolean> {
-        int scannerId;
-        Context context;
-        Class targetClass;
-        private CustomProgressDialog progressDialog;
-        DCSSDKDefs.DCSSDK_COMMAND_OPCODE opcode;
-
-        public AsyncTaskUnPairAndRebootAvailable(int scannerId, DCSSDKDefs.DCSSDK_COMMAND_OPCODE opcode, Context context, Class targetClass) {
-            this.scannerId = scannerId;
-            this.opcode = opcode;
-            this.context = context;
-            this.targetClass = targetClass;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = new CustomProgressDialog(ActiveScannerActivity.this, context.getResources().getString(R.string.please_wait_string));
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-        }
-
-        @Override
-        protected Boolean doInBackground(String... strings) {
-            StringBuilder sb = new StringBuilder();
-            boolean result = executeCommand(opcode, strings[0], sb, scannerId);
-            if (opcode == DCSSDKDefs.DCSSDK_COMMAND_OPCODE.DCSSDK_RSM_ATTR_GETALL) {
-                if (result) {
-                    try {
-                        int i = 0;
-                        XmlPullParser parser = Xml.newPullParser();
-
-                        parser.setInput(new StringReader(sb.toString()));
-                        int event = parser.getEventType();
-                        String text = null;
-                        while (event != XmlPullParser.END_DOCUMENT) {
-                            String name = parser.getName();
-                            switch (event) {
-                                case XmlPullParser.START_TAG:
-                                    break;
-                                case XmlPullParser.TEXT:
-                                    text = parser.getText();
-                                    break;
-
-                                case XmlPullParser.END_TAG:
-                                    if (name.equals(context.getResources().getString(R.string.attribute_string))) {
-                                        if (text != null && text.trim().equals(RMD_ATTR_ACTION_REBOOT_AND_UN_PAIR)) {
-                                            return true;
-                                        }
-                                    }
-                                    break;
-                            }
-                            event = parser.next();
-                        }
-                    } catch (Exception e) {
-                        Log.e(TAG, e.toString());
-                    }
-                }
-            }
-            return false;
-        }
-
-
-        @Override
-        protected void onPostExecute(Boolean b) {
-            super.onPostExecute(b);
-            if (progressDialog != null && progressDialog.isShowing())
-                progressDialog.dismiss();
-
-            Intent intent = new Intent(context, targetClass);
-            intent.putExtra(Constants.SCANNER_ID, scannerID);
-            intent.putExtra(Constants.SCANNER_NAME, getIntent().getStringExtra(Constants.SCANNER_NAME));
-            intent.putExtra(Constants.UNPAIR_AND_REBOOT_STATUS, b);
-            startActivity(intent);
-        }
-
-    }
 
     public void findScanner(View view) {
         btnFindScanner = (Button) findViewById(R.id.btn_find_scanner);

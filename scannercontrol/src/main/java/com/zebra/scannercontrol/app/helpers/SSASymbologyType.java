@@ -12,15 +12,13 @@ import static com.zebra.scannercontrol.RMDAttributes.*;
 
 public class SSASymbologyType implements Serializable {
 
-    // member variables
     private String symbologyName;
     private String attrIDDecodeCountHexValue;
     private Integer attrIDDecodeCount;
     private Integer attrIDMinDecodeTime;
     private Integer attrIDMaxDecodeTime;
     private Integer attrIDAvgDecodeTime;
-    private Integer attrIDSlowestDecodeData;
-    private Integer attrIDScanSpeedHistogram;
+
 
 
     public SSASymbologyType(String symbologyName) {
@@ -36,27 +34,12 @@ public class SSASymbologyType implements Serializable {
     public void setAttrIDDecodeCount(Integer attrIDDecodeCount) { this.attrIDDecodeCount = attrIDDecodeCount; }
     public Integer getAttrIDDecodeCount() { return attrIDDecodeCount; }
 
-    public void setAttrIDMinDecodeTime(Integer attrIDMinDecodeTime) { this.attrIDMinDecodeTime = attrIDMinDecodeTime; }
     public Integer getAttrIDMinDecodeTime() { return attrIDMinDecodeTime; }
 
-    public void setAttrIDMaxDecodeTime(Integer attrIDMaxDecodeTime) { this.attrIDMaxDecodeTime = attrIDMaxDecodeTime; }
     public Integer getAttrIDMaxDecodeTime() { return attrIDMaxDecodeTime; }
 
-    public void setAttrIDAvgDecodeTime(Integer attrIDAvgDecodeTime) { this.attrIDAvgDecodeTime = attrIDAvgDecodeTime; }
     public Integer getAttrIDAvgDecodeTime() { return attrIDAvgDecodeTime; }
 
-    public void setAttrIDSlowestDecodeData(Integer attrIDSlowestDecodeData) { this.attrIDSlowestDecodeData = attrIDSlowestDecodeData; }
-    public Integer getAttrIDSlowestDecodeData() { return attrIDSlowestDecodeData; }
-
-    public void setAttrIDScanSpeedHistogram(Integer attrIDScanSpeedHistogram) { this.attrIDScanSpeedHistogram = attrIDScanSpeedHistogram; }
-    public Integer getAttrIDScanSpeedHistogram() { return attrIDScanSpeedHistogram; }
-
-//    public static SSASymbologyType getUPCSymbplogyObject(){
-//        SSASymbologyType retSSASymboType = new SSASymbologyType("UPC");
-//        retSSASymboType.attrIDAvgDecodeTime = 1;
-//        retSSASymboType.attrIDDecodeCount = 2;
-//        return retSSASymboType;
-//    }
 
     public static List<SSASymbologyType> getSSASymbologyList(List<Integer> supportedIDList) {
         List<SSASymbologyType> resultSymList = new ArrayList<SSASymbologyType>();
@@ -70,8 +53,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_UPC; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_UPC; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_UPC; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_UPC; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_UPC; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -82,8 +63,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_EAN_JAN; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_EAN_JAN ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_EAN_JAN ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_EAN_JAN; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_EAN_JAN; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -94,8 +73,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_2_OF_5; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_2_OF_5; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_2_OF_5; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_2_OF_5; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_2_OF_5; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -106,8 +83,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_CODEBAR; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_CODEBAR ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_CODEBAR ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_CODEBAR; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_CODEBAR; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -118,8 +93,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_CODE_11; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_CODE_11 ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_CODE_11 ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_CODE_11; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_CODE_11; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -130,8 +103,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_CODE_128; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_CODE_128 ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_CODE_128 ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_CODE_128; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_CODE_128; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -142,8 +113,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_CODE_39; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_CODE_39 ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_CODE_39 ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_CODE_39; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_CODE_39; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -154,8 +123,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_CODE_93; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_CODE_93 ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_CODE_93 ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_CODE_93; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_CODE_93; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -166,8 +133,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_COMPOSITE; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_COMPOSITE ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_COMPOSITE ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_COMPOSITE; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_COMPOSITE; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -178,8 +143,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_GS1_DATABAR; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_GS1_DATABAR ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_GS1_DATABAR ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_GS1_DATABAR; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_GS1_DATABAR; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -190,8 +153,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_MSI; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_MSI ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_MSI ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_MSI; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_MSI; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -202,8 +163,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime      = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_DATAMARIX; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime      = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_DATAMARIX ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime      = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_DATAMARIX ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData  = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_DATAMARIX; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram = RMD_ATTR_VALUE_SSA_HISTOGRAM_DATAMARIX; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -214,8 +173,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_PDF; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_PDF ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_PDF ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_PDF; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_PDF; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -226,8 +183,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_POSTAL_CODES; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_POSTAL_CODES ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_POSTAL_CODES ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_POSTAL_CODES; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_POSTAL_CODES; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -238,8 +193,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime      = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_QR; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime      = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_QR ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime      = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_QR ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData  = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_QR; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram = RMD_ATTR_VALUE_SSA_HISTOGRAM_QR; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -250,8 +203,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_AZTEC; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_AZTEC ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_AZTEC ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_AZTEC; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_AZTEC; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -262,8 +213,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_OCR; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_OCR ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_OCR ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_OCR; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_OCR; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -274,8 +223,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_MAXICODE; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_MAXICODE ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_MAXICODE ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_MAXICODE; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_MAXICODE; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -286,8 +233,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_GS1_DATAMATRIX; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_GS1_DATAMATRIX ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_GS1_DATAMATRIX ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_GS1_DATAMATRIX; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_GS1_DATAMATRIX; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -298,8 +243,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_GS1_QR_CODE; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_GS1_QR_CODE ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_GS1_QR_CODE ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_GS1_QR_CODE; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_GS1_QR_CODE; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -310,8 +253,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_COUPON; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_COUPON ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_COUPON ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_COUPON; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_COUPON; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -322,8 +263,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_DIGIMARC_UPC; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_DIGIMARC_UPC ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_DIGIMARC_UPC ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_DIGIMARC_UPC; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_DIGIMARC_UPC; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -334,8 +273,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_DIGIMARC_EAN_JAN; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_DIGIMARC_EAN_JAN ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_DIGIMARC_EAN_JAN ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_DIGIMARC_EAN_JAN; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_DIGIMARC_EAN_JAN; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -346,8 +283,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_DIGIMARC_OTHER; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_DIGIMARC_OTHER ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_DIGIMARC_OTHER ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_DIGIMARC_OTHER; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_DIGIMARC_OTHER; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -358,8 +293,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_OTHER_1D; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_OTHER_1D ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_OTHER_1D ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_OTHER_1D; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_OTHER_1D; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -370,8 +303,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_OTHER_2D; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_OTHER_2D ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_OTHER_2D ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_OTHER_2D; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_OTHER_2D; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -382,8 +313,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_OTHER; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_OTHER ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_OTHER ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_OTHER; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_OTHER; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }
@@ -394,8 +323,6 @@ public class SSASymbologyType implements Serializable {
                     tempSymType.attrIDMinDecodeTime       = RMD_ATTR_VALUE_SSA_MIN_DECODE_TIME_UNUSED_ID; // Minimum Decode time
                     tempSymType.attrIDMaxDecodeTime       = RMD_ATTR_VALUE_SSA_MAX_DECODE_TIME_UNUSED_ID ; // Maximum(Slowest) Decode Time
                     tempSymType.attrIDAvgDecodeTime       = RMD_ATTR_VALUE_SSA_AVG_DECODE_TIME_UNUSED_ID ; // Average Decode Time
-                    tempSymType.attrIDSlowestDecodeData   = RMD_ATTR_VALUE_SSA_SLOW_DECODE_DATA_UNUSED_ID; // Slowest Decode Data
-                    tempSymType.attrIDScanSpeedHistogram  = RMD_ATTR_VALUE_SSA_HISTOGRAM_UNUSED_ID; // Scan Speed Histogram
                     resultSymList.add(tempSymType);
                     break;
                 }

@@ -63,8 +63,6 @@ public class BaseActivity extends AppCompatActivity implements ScannerAppEngine,
     // The Handler that gets information back from the BluetoothChatService
     static boolean waitingForFWReboot = false;
 
-    protected final Handler mHandler = initializeHandler();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,12 +88,7 @@ public class BaseActivity extends AppCompatActivity implements ScannerAppEngine,
         Application.sdkHandler.dcssdkSetDelegate(this);
         initializeDcsSdkWithAppSettings();
     }
-
-    private Handler initializeHandler() {
-        if (Application.globalMsgHandler != null)
-            return Application.globalMsgHandler;
-        return null;
-    }
+    
 
 
     @Override
@@ -565,25 +558,7 @@ public class BaseActivity extends AppCompatActivity implements ScannerAppEngine,
                             vibrator.vibrate(pattern, 0);
                         }
 
-                        showVirtualTetherBackgroundNotification();
 
-                    } else if ((ScannersActivity.curAvailableScanner != null) && (scannerID == ScannersActivity.curAvailableScanner.getScannerId())) {
-                        virtualTetherHostActivated = true;
-                        Intent intent = new Intent(this, VirtualTetherSettings.class);
-                        intent.putExtra(Constants.SCANNER_ID, scannerID);
-                        intent.putExtra(Constants.VIRTUAL_TETHER_EVENT_NOTIFY, true);
-
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                            AudioAttributes attributes = new AudioAttributes.Builder()
-                                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                                    .setUsage(AudioAttributes.USAGE_ALARM)
-                                    .build();
-                            vibrator.vibrate(pattern, 0, attributes);
-                        } else {
-                            vibrator.vibrate(pattern, 0);
-                        }
-                        startActivity(intent);
-                    } else {
                     }
 
                 }
@@ -591,17 +566,9 @@ public class BaseActivity extends AppCompatActivity implements ScannerAppEngine,
                     if (isInBackgroundMode(getApplicationContext())) {
                         createNotificationChannel();
                         startVirtualTetherAudioAlarm();
-                        showVirtualTetherBackgroundNotification();
 
 
-                    } else if ((ScannersActivity.curAvailableScanner != null) && (scannerID == ScannersActivity.curAvailableScanner.getScannerId())) {
-                        virtualTetherHostActivated = true;
-                        Intent intent = new Intent(this, VirtualTetherSettings.class);
-                        intent.putExtra(Constants.SCANNER_ID, scannerID);
-                        intent.putExtra(Constants.VIRTUAL_TETHER_EVENT_NOTIFY, true);
-                        startVirtualTetherAudioAlarm();
-                        startActivity(intent);
-                    } else {
+                    }  else {
                     }
 
                 }
@@ -609,15 +576,8 @@ public class BaseActivity extends AppCompatActivity implements ScannerAppEngine,
                 if (settings.getBoolean(Constants.PREF_VIRTUAL_TETHER_HOST_POPUP_MESSAGE, false)) {
                     if (isInBackgroundMode(getApplicationContext())) {
                         createNotificationChannel();
-                        showVirtualTetherBackgroundNotification();
 
 
-                    } else if ((ScannersActivity.curAvailableScanner != null) && (scannerID == ScannersActivity.curAvailableScanner.getScannerId())) {
-                        virtualTetherHostActivated = true;
-                        Intent intent = new Intent(this, VirtualTetherSettings.class);
-                        intent.putExtra(Constants.SCANNER_ID, scannerID);
-                        intent.putExtra(Constants.VIRTUAL_TETHER_EVENT_NOTIFY, true);
-                        startActivity(intent);
                     } else {
                     }
 
@@ -626,15 +586,8 @@ public class BaseActivity extends AppCompatActivity implements ScannerAppEngine,
                 if (settings.getBoolean(Constants.PREF_VIRTUAL_TETHER_HOST_SCREEN_FLASH, false)) {
                     if (isInBackgroundMode(getApplicationContext())) {
                         createNotificationChannel();
-                        showVirtualTetherBackgroundNotification();
 
 
-                    } else if ((ScannersActivity.curAvailableScanner != null) && (scannerID == ScannersActivity.curAvailableScanner.getScannerId())) {
-                        virtualTetherHostActivated = true;
-                        Intent virtualTetherSettingsIntent = new Intent(this, VirtualTetherSettings.class);
-                        virtualTetherSettingsIntent.putExtra(Constants.SCANNER_ID, scannerID);
-                        virtualTetherSettingsIntent.putExtra(Constants.VIRTUAL_TETHER_EVENT_NOTIFY, true);
-                        startActivity(virtualTetherSettingsIntent);
                     } else {
                     }
 
@@ -669,31 +622,6 @@ public class BaseActivity extends AppCompatActivity implements ScannerAppEngine,
         }
     }
 
-    /**
-     * This method is to show notification in background mode
-     */
-    private void showVirtualTetherBackgroundNotification() {
-
-        virtualTetherHostActivated = true;
-        String channelId = getString(R.string.virtual_tether_notification_channel_id);
-        // Define resultIntent with the target activity class to be launched when user click the notification.
-        Intent resultIntent = new Intent(this, VirtualTetherSettings.class);
-        resultIntent.putExtra(Constants.VIRTUAL_TETHER_EVENT_NOTIFY, true);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addNextIntentWithParentStack(resultIntent);
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder NotificationBuilder = new NotificationCompat.Builder(this, channelId)
-                .setSmallIcon(R.drawable.app_icon_small)
-                .setContentText(VIRTUAL_TETHER_HOST_BACKGROUND_MODE_NOTIFICATION);
-        NotificationBuilder.setContentIntent(resultPendingIntent);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.notify(VIRTUAL_TETHER_HOST_NOTIFICATION_CHANNEL_ID, NotificationBuilder.build());
-    }
-    /**
-     * This method is responsible for resetting the virtual tether host configurations for the connected scanner
-     */
     public void resetVirtualTetherHostConfigurations() {
 
         SharedPreferences.Editor settingsEditor = getSharedPreferences(Constants.PREFS_NAME, 0).edit();
@@ -712,15 +640,12 @@ public class BaseActivity extends AppCompatActivity implements ScannerAppEngine,
     private BroadcastReceiver onNotification = new BroadcastReceiver() {
         public void onReceive(Context ctxt, Intent i) {
 
-            //Since the application is in foreground, show a dialog.
             Toast.makeText(ctxt, i.getStringExtra(Constants.NOTIFICATIONS_TEXT), Toast.LENGTH_SHORT).show();
 
-            //Abort the broadcast since it has been handled.
             abortBroadcast();
         }
     };
 
-//Handler to show the data on UI
 
     protected Handler dataHandler = new Handler() {
         boolean notificaton_processed = false;

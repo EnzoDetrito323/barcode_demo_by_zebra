@@ -67,8 +67,6 @@
     </string-array>
 
     <string name="menu_item_device_disconnect">Disconnect Scanner</string>
-    <string name="menu_item_device_pair">Pair Bluetooth Scanner</string>
-    <string name="title_activity_about">App Overview</string>
     <string name="version">Version</string>
     <string name="version_info">Zebra Scanner Control Application v1.0\n\n©2020 Zebra Technologies Corp. and/or its affiliates.  All rights reserved.\n</string>
     <string name="title_activity_scanners">Available Device List</string>
@@ -76,12 +74,10 @@
     <string name="bt_no_scanners">No scanner found.</string>
 
     <string name="menu_firmware_help">Firmware update help</string>
-    <string name="menu_virtual_tether_help">Virtual Tether help</string>
 
     <string name="menu_add_scanner">Refresh device list</string>
     <string name="menu_get_pairing_barcode">Get Pairing Barcode</string>
     <string name="menu_refresh_scanners">Refresh</string>
-    <string name="title_activity_scanner_configurations">Connection Help</string>
     <string name="title_activity_settings">App Settings</string>
     <string name="scanner_detection_title">Scanner Detection</string>
     <string name="scanner_discovery_title">Bluetooth Scanner Discovery</string>
@@ -194,7 +190,6 @@
     <string name="aimon">AIM On</string>
     <string name="aimoff">AIM Off</string>
     <string name="vibration_feedback">Vibration Feedback</string>
-    <string name="virtual_tether">Virtual Tether</string>
     <string name="title_activity_barcode_configuration">Connection Help</string>
     <string name="slowest_decode_image">Slowest Decode Image:</string>
     <string name="weight_measured">Weight Measured :</string>
@@ -208,7 +203,6 @@
     <string name="info_top">Scan the bar code below to pair your cordless scanner to this tablet/phone</string>
     <string name="info_bottom">This on-screen bar code replaces the need for a paper pairing bar code.</string>
     <string name="clearList">CLEAR LIST</string>
-    <string name="scale">Scale</string>
     <string name="title_activity_scanner_list">ScannerListActivity</string>
     <string name="title_activity_connection_help">Connection Help</string>
     <string name="GS1128">GS1-128</string>
@@ -231,9 +225,6 @@
     <string name="title_activity_connection_help_cs4070">ConnectionHelpCS4070</string>
     <string name="title_activity_connection_help_li4278">ConnectionHelpLI4278</string>
     <string name="title_activity_connection_help_rfd8500">ConnectionHelpRFD8500</string>
-    <string name="updateFirmware">Update Firmware</string>
-    <string name="Image_Video">Image and Video</string>
-    <string name="unpair_and_reboot">Unpair and Reboot</string>
     <string name="please_wait_string">Please wait...</string>
     <string name="attribute_string">attribute</string>
     <string name="scanner_disconnect_string">This will disconnect your current scanner</string>
@@ -244,7 +235,6 @@
     <string name="abort_update_firmware">Abort Firmware Update</string>
     <string name="title_activity_update_firmware">Update Firmware</string>
     <string name="update_firmware_confimation">Confirm that you want to update the following scanner</string>
-    <string name="scanSpeedAnalytics">Scan Speed Analytics</string>
     <string name="configure_ssa">Configure SSA</string>
     <string name="view_ssa">View SSA</string>
     <string name="trigger">Trigger</string>
@@ -323,8 +313,6 @@
     <string name="on_off">ON/OFF</string>
     <string name="vibration_duration">Vibration Duration (ms)</string>
     <string name="test_vibration">TEST VIBRATION</string>
-    <string name="title_activity_virtual_tether">Virtual Tether</string>
-    <string name="battery_statistics">Battery Statistics</string>
     <string name="scanner_name">Scanner Name:</string>
     <string name="title_activity_battery_statistics">Battery Statistics</string>
     <string name="battery_asset_info">Battery Asset Information</string>

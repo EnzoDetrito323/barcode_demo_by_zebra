@@ -52,7 +52,6 @@ public class BeeperActionsActivity extends BaseActivity implements NavigationVie
     private ArrayList<Integer> beeperActions;
     private NavigationView navigationView;
     Menu menu;
-    MenuItem pairNewScannerMenu;
     private int scannerID;
     private String scannerName;
     public static final int SEEK_BAR_PROGRESS_MIN = 0;
@@ -100,8 +99,7 @@ public class BeeperActionsActivity extends BaseActivity implements NavigationVie
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         menu = navigationView.getMenu();
-        pairNewScannerMenu = menu.findItem(R.id.nav_pair_device);
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_disconnect);
+
         scannerID = getIntent().getIntExtra(Constants.SCANNER_ID, -1);
         scannerName = getIntent().getStringExtra(Constants.SCANNER_NAME);
 
@@ -271,15 +269,8 @@ public class BeeperActionsActivity extends BaseActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Intent intent;
-        if (id == R.id.nav_pair_device) {
-            disconnect(scannerID);
-            Application.barcodeData.clear();
-            Application.currentScannerId = Application.SCANNER_ID_NONE;
-            finish();
-            intent = new Intent(BeeperActionsActivity.this, HomeActivity.class);
-            startActivity(intent);
 
-        } else if (id == R.id.nav_devices) {
+        if (id == R.id.nav_devices) {
             intent = new Intent(this, ScannersActivity.class);
 
             startActivity(intent);
@@ -305,15 +296,6 @@ public class BeeperActionsActivity extends BaseActivity implements NavigationVie
                 }
             });
             dlg.show();
-        }else if (id == R.id.nav_connection_help) {
-            intent = new Intent(this, ConnectionHelpActivity2.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_settings) {
-            intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_about) {
-            intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -334,14 +316,12 @@ public class BeeperActionsActivity extends BaseActivity implements NavigationVie
 
     @Override
     public boolean scannerHasConnected(int scannerID) {
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_disconnect);
         return false;
     }
 
     @Override
     public boolean scannerHasDisconnected(int scannerID) {
         Application.barcodeData.clear();
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_pair);
         this.finish();
         return true;
     }

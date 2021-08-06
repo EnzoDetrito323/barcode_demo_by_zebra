@@ -59,7 +59,6 @@ public class HomeActivity extends BaseActivity
     private FrameLayout llBarcode;
     private NavigationView navigationView;
     Menu menu;
-    MenuItem pairNewScannerMenu;
     private static final int ACCESS_FINE_LOCATION_REQUEST_CODE = 10;
     private static final int MAX_ALPHANUMERIC_CHARACTERS = 12;
     private static final int MAX_BLUETOOTH_ADDRESS_CHARACTERS = 17;
@@ -99,8 +98,7 @@ public class HomeActivity extends BaseActivity
          navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         menu = navigationView.getMenu();
-        pairNewScannerMenu = menu.findItem(R.id.nav_pair_device);
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_pair);
+
 
 
         if (ContextCompat.checkSelfPermission(this,
@@ -242,44 +240,11 @@ public class HomeActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Intent intent;
-        if(id==R.id.nav_pair_device){
-            if(Application.isAnyScannerConnected) {
-                AlertDialog.Builder dlg = new  AlertDialog.Builder(this);
-                dlg.setTitle("This will disconnect your current scanner");
-                //dlg.setIcon(android.R.drawable.ic_dialog_alert);
-                dlg.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int arg) {
-
-                        disconnect(Application.currentConnectedScannerID);
-                        Application.barcodeData.clear();
-                        Application.currentScannerId =Application.SCANNER_ID_NONE;
-                        finish();
-                        Intent intent = new Intent(HomeActivity.this,HomeActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
-                dlg.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int arg) {
-
-                    } });
-                dlg.show();
-
-            }
-        }else if (id == R.id.nav_devices) {
+        if (id == R.id.nav_devices) {
             intent = new Intent(this, ScannersActivity.class);
             startActivity(intent);
         }else if (id == R.id.nav_find_cabled_scanner) {
             intent = new Intent(this, FindCabledScanner.class);
-            startActivity(intent);
-        }else if (id == R.id.nav_connection_help) {
-            intent = new Intent(this, ConnectionHelpActivity2.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_settings) {
-            intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_about) {
-            intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
         }
 
@@ -308,12 +273,8 @@ public class HomeActivity extends BaseActivity
     protected void onResume() {
         super.onResume();
         addDevConnectionsDelegate(this);
-        navigationView.getMenu().findItem(R.id.nav_about).setChecked(false);
-        navigationView.getMenu().findItem(R.id.nav_pair_device).setChecked(false);
-        navigationView.getMenu().findItem(R.id.nav_pair_device).setCheckable(false);
+
         navigationView.getMenu().findItem(R.id.nav_devices).setChecked(false);
-        navigationView.getMenu().findItem(R.id.nav_connection_help).setChecked(false);
-        navigationView.getMenu().findItem(R.id.nav_settings).setChecked(false);
         navigationView.getMenu().findItem(R.id.nav_find_cabled_scanner).setChecked(false);
         navigationView.getMenu().findItem(R.id.nav_find_cabled_scanner).setCheckable(false);
         SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
@@ -682,7 +643,6 @@ public class HomeActivity extends BaseActivity
         ArrayList<DCSScannerInfo> activeScanners = new ArrayList<DCSScannerInfo>();
         Application.sdkHandler.dcssdkGetActiveScannersList(activeScanners);
         Intent intent = new Intent(HomeActivity.this, ActiveScannerActivity.class);
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_disconnect);
 
         for (DCSScannerInfo scannerInfo : Application.mScannerInfoList) {
             if (scannerInfo.getScannerID() == scannerID) {
@@ -804,7 +764,6 @@ public class HomeActivity extends BaseActivity
 
     @Override
     public boolean scannerHasDisconnected(int scannerID) {
-        pairNewScannerMenu.setTitle(R.string.menu_item_device_pair);
         Application.isAnyScannerConnected = false;
         Application.currentConnectedScannerID = -1;
         Application.lastConnectedScanner = Application.currentConnectedScanner;
